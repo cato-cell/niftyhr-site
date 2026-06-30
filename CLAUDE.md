@@ -1,187 +1,66 @@
-# CLAUDE.md – niftyhr-site
+# NiftyHR.no – statisk landingsside
 
-Instruks for Claude Code som styrer nettsiden og blogg-publisering for NiftyHR.
+## Hva dette er
+niftyhr.no er en statisk markedsførings- og hjelpeside som leder nye brukere til å registrere seg i selve appen på niftyhr.io. Den er IKKE appen. Mål: konvertere besøkende til registrerte brukere.
 
----
+- Appen / registrering / innlogging: https://www.niftyhr.io/auth/login  (ALLE «opprett bruker»- og «logg inn»-CTA-er peker hit)
+- Designet er en bevisst kopi av niftyhr.io sitt uttrykk (mørkt, grønn aksent), med egne, mer konverteringsrettede tekster.
 
-## 1. Hva dette repoet er
+## Teknisk stack og deploy
+- Ren statisk HTML/CSS. Ingen rammeverk, ingen byggesteg, minimal JS.
+- GitHub-repo: cato-cell/niftyhr-site → Cloudflare Pages.
+- Cloudflare: production branch = main, build command = tom, output directory = /. Hver commit til main auto-deployer på ~30 sek.
+- Live nå: niftyhr-site.pages.dev. Domenet niftyhr.no kobles på senere via Cloudflare → Custom domains.
+- Bruk ROT-ABSOLUTTE stier på alle delte ressurser: /style.css, /niftyhr-logo.svg, /video-poster.jpg. Dette gjør at sider i /posts/ også funker.
 
-Rent statisk nettsted (HTML + CSS, ingen byggesteg, ingen framework). Hostet på Cloudflare Pages, deploy skjer automatisk ved merge til `main`.
+## Filer
+- index.html – forsiden
+- style.css – all delt CSS (designtokens, komponenter, .post)
+- niftyhr-logo.svg – HVIT logo (brukes på mørk bakgrunn, header + footer)
+- niftyhr_logo_white/black.png/svg – kildefiler (svart versjon kun for lyse flater)
+- video-poster.jpg – forsidebilde på videoen (Roger Eriksen, daglig leder)
+- posts/<slug>.html – blogginnlegg
 
-**Domener:**
-- `niftyhr.no` = offentlig landingsside (dette repoet). Skal erstatte .io som forside.
-- All registrering/innlogging går til `https://www.niftyhr.io/auth/login` (appen – eget system, ikke dette repoet).
-- Canonical for alt innhold = `https://niftyhr.no/...`
+## Designsystem (allerede definert i style.css)
+- Bakgrunn near-black: --bg #0A0A0A, kort --bg-2 #121212, indre --bg-3 #191919
+- Tekst: --text #F4F4F4, dempet --muted #9A9A9A, linjer --line rgba(255,255,255,.09)
+- Grønn aksent: --green #36B27D, --green-text #6FD3A2, --green-soft/-border/-deep, donut --mint #86D6A6
+- Display-font: Space Grotesk (Google Fonts). Brødtekst: systemfont.
+- Stil: premium SaaS, skandinavisk dark mode, minimalistisk, mobil-først, god spacing, tydelig CTA. Unngå glow, stockfølelse, falske dashboards, overdesign.
 
-**Struktur:**
-```
-/index.html              forside (inkl. liste "Artikler og nyheter")
-/style.css               felles styling
-/posts/{slug}.html       én fil per bloggpost
-/sitemap.xml             genereres/oppdateres manuelt (ingen build)
-/robots.txt
-/404.html
-/niftyhr-logo.svg + logo-varianter
-```
+## Innholds- og språkregler
+- Språk: norsk bokmål. Tone: rolig, konkret, litt spiss, ingen corporate buzzwords («revolusjonerende», «sømløs», «disruptiv» osv. er forbudt).
+- Posisjonering: enkelt, praktisk, AI-forsterket HR for små bedrifter (5–50 ansatte) UTEN HR-avdeling. Ikke «enda et HR-system».
+- ALL norsk tekst skal kvalitetssjekkes for særskriving/orddeling, bindestrek og staving før commit.
 
-Fordi det ikke finnes byggesteg: **agenten skriver alle filer direkte.** Sitemap, forside-liste og robots oppdateres som vanlige filer i samme PR.
+## Priser (ENESTE gyldige tall – aldri vis intervaller)
+- Nifty Go: Gratis, kostnadsfritt opptil 10 ansatte
+- Nifty Plus: 49,- per ansatt/mnd, for bedrifter med flere enn 10 ansatte
+- Nifty Business: Ta kontakt
+- SMS-portal: fra 0,59 per SMS
+- Agent44 (AI): omtales kun som KOMMENDE/neste steg – ALDRI som en live funksjon.
 
----
+## Faste fakta (footer/kontakt)
+- «NiftyHR, et produkt av Heisenbug®»
+- team@niftyhr.io · +47 411 15 411 · Org. nr. 934 476 336
+- Heisenbug: https://heisenbug.no/ · LinkedIn: https://www.linkedin.com/company/nifty-hr/ · Vilkår: https://www.niftyhr.io/betingelser
 
-## 2. Arbeidsflyt – ny bloggpost
+## Forsidens seksjoner
+Header (logo + Logg inn) · Hero (overskrift + 2 CTA + gratis-hook + CSS-preview av ferie/fravær med donut) · Funksjoner (6 kort) · Video (YouTube-id JD3lNTJsqsw, klikk-for-å-spille, poster = /video-poster.jpg) · Priser (3 tiers) · Artikler (5 kort → /posts/) · FAQ (7 spørsmål) · Footer.
 
-Hver ny post skjer i **én PR** og må gjøre alle fire stegene, ellers henger ting ikke sammen:
+## Blogg
+5 innlegg i /posts/, samme slugs som niftyhr.io, delt style.css + .post-stiler, hver med CTA til registrering nederst og «Tilbake til forsiden»-lenke.
 
-1. Opprett `posts/{slug}.html` fra malen i punkt 4.
-2. Legg posten **øverst** i «Artikler og nyheter»-listen i `index.html` (nyeste først).
-3. Legg URL-en til i `sitemap.xml`.
-4. Skriv kvalitetsrapport (punkt 6) i PR-beskrivelsen + flagg om juridisk kontroll trengs.
+## Status (faktisk repo-tilstand pr. nå)
+- [x] Forside (index.html) – ferdig og live
+- [x] style.css utskilt og lenket fra alle sider (index.html + alle /posts/)
+- [x] 5 blogginnlegg i /posts/ opprettet og lenket fra forsiden
+- [x] Rest-mappene «LOGO NIFTHR» og «NiftyHr site» slettet (allerede gjort)
+- [ ] Footer-lenker satt riktig – IKKE gjort ennå: LinkedIn peker til generisk linkedin.com (skal være .../company/nifty-hr/), Heisenbug-lenke mangler helt, og «Vilkår» peker til niftyhr.io (skal være niftyhr.io/betingelser)
+- [ ] Domenet niftyhr.no koblet i Cloudflare – ikke gjort (kjører foreløpig på niftyhr-site.pages.dev)
 
-**Slug-regel:** små bokstaver, bindestrek, æ→a/ø→o/å→a, ingen filendelse i selve slug-navnet (filen får `.html`). Eks: `de-fleste-sma-bedrifter-bryter-hr-regler-uten-a-vite-det.html`.
+## Gjenstående SEO-grunnoppsett (engangsjobb)
+Ingen av disse finnes i repoet ennå – alt gjenstår: robots.txt, sitemap.xml, 404.html, canonical-tag og JSON-LD på sidene.
 
-**Branch:** `blogg/{slug}`. **PR-tittel:** `Blogg: {tittel}`.
-
-Aldri commit direkte til `main`. Cato merger = godkjenning = publisert.
-
----
-
-## 3. Innholdsregler (brand)
-
-Posisjonering: **enkelt, praktisk, AI-støttet HR-system små bedrifter faktisk bruker.** Aldri «nok et HR-system».
-
-Målgruppe: daglige ledere, gründere, småbedrifter 5–50 ansatte uten egen HR-avdeling.
-
-Struktur i hver post: **Problem → innsikt → praktisk løsning.** Start alltid med et reelt SMB-problem, ikke med produktet.
-
-**Tone:**
-- Naturlig norsk – aldri oversatt-engelsk følelse.
-- Rolig, ærlig, konkret. Nordmenn er skeptiske til overdrevne løfter.
-- Korte avsnitt. Sterk første setning.
-
-**Bruk gjerne vinkler som:**
-- «Mange små bedrifter har ikke et HR-problem. De har et hukommelsesproblem.»
-- «Det farligste HR-systemet i en liten bedrift er hodet til daglig leder.»
-- «Excel fungerer helt fint. Helt til noen slutter, blir syk eller skal følges opp.»
-
-**Unngå alltid:** «revolusjonerende», «banebrytende», «disruptiv», «fremtiden for arbeid», «alt-i-ett HR-suite», «AI-drevet transformasjon», corporate floskler, AI-hype.
-
-**Pris (hvis nevnt):** «gratis for inntil 10 ansatte, deretter 49 kr per ansatt/mnd». Alltid **ett bestemt tall** – aldri intervall.
-
-**Agent44 (hvis nevnt):** operativ AI-medarbeider, ikke chatbot. Eies av Heisenbug AS, ikke NiftyHR. Omtales som **neste steg / kommende**, ikke som ferdig integrert funksjon. Ikke oversell.
-
-**CTA:** myk, mot slutten. Standard: «Kom i gang med NiftyHR gratis for inntil 10 ansatte» → knapp til `https://www.niftyhr.io/auth/login`.
-
----
-
-## 4. Post-mal
-
-Bruk eksakt denne strukturen. Bytt ut `{{...}}`. Behold topbar, CTA og klassenavn likt eksisterende poster.
-
-```html
-<!DOCTYPE html>
-<html lang="no">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{TITTEL}} – NiftyHR</title>
-<meta name="description" content="{{META_BESKRIVELSE_MAKS_155_TEGN}}">
-<link rel="canonical" href="https://niftyhr.no/posts/{{SLUG}}.html">
-<meta property="og:title" content="{{TITTEL}}">
-<meta property="og:description" content="{{META_BESKRIVELSE_MAKS_155_TEGN}}">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://niftyhr.no/posts/{{SLUG}}.html">
-<meta property="og:image" content="https://niftyhr.no/nifty_preview.png">
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Article",
-  "headline": "{{TITTEL}}",
-  "description": "{{META_BESKRIVELSE}}",
-  "datePublished": "{{ISO_DATO}}",
-  "author": { "@type": "Organization", "name": "NiftyHR" },
-  "publisher": { "@type": "Organization", "name": "NiftyHR" },
-  "mainEntityOfPage": "https://niftyhr.no/posts/{{SLUG}}.html"
-}
-</script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/style.css">
-</head>
-<body>
-  <div class="topbar"><div class="topbar-inner">
-    <a class="logo-link" href="/" aria-label="NiftyHR"><img class="logo-img" src="/niftyhr-logo.svg" alt="NiftyHR"></a>
-    <a class="btn btn-green" href="https://www.niftyhr.io/auth/login">Logg inn</a>
-  </div></div>
-
-  <article class="post wrap">
-    <a class="back" href="/">← Tilbake til forsiden</a>
-    <div class="date">{{DATO_NORSK}}</div>
-    <h1>{{TITTEL}}</h1>
-    <div class="body">
-      {{BRØDTEKST_I_P_OG_UL_TAGGER}}
-    </div>
-    <div class="cta">
-      <h3>Klar til å få kontroll på HR?</h3>
-      <p>Kom i gang med NiftyHR gratis for inntil 10 ansatte.</p>
-      <a class="btn btn-green" href="https://www.niftyhr.io/auth/login">Opprett bruker gratis →</a>
-    </div>
-  </article>
-</body>
-</html>
-```
-
-Endring fra dagens maler: **canonical-tag** og **JSON-LD Article** er lagt til (manglet før).
-
----
-
-## 5. Juridisk og faglig kontroll
-
-Agenten skal **aldri**:
-- finne på lover, regler, statistikk eller kilder
-- fremstille usikker info som fakta
-
-Ved temaer som berører norsk lovverk, HR-compliance, sykefravær, arbeidsavtaler eller personvern/GDPR:
-- skill mellom faktum, anbefaling og praktisk råd
-- **flagg posten `JURIDISK KONTROLL: JA`** i PR-beskrivelsen
-- ikke skriv konkrete lovhenvisninger uten at de er verifisert
-
-Cato/fagperson må godkjenne juridisk-flaggede poster manuelt før merge.
-
----
-
-## 6. Kvalitetsport
-
-Hver post vurderes før PR. Skår 1–10 på: relevans, faglig nøyaktighet, SEO, lesbarhet, naturlig norsk, originalitet, NiftyHR-relevans, CTA, «føles ikke AI-generert».
-
-**Poster under 8/10 går ikke i PR.** Skriv om først.
-
-PR-beskrivelse skal inneholde:
-```
-Tittel: ...
-Slug: ...
-Primært søkeord: ...
-Kvalitetsskår: x/10
-Svakheter: ...
-JURIDISK KONTROLL: JA/NEI
-```
-
----
-
-## 7. Engangsoppgaver (gjør én gang nå)
-
-1. **Legg til `robots.txt`** i rot:
-   ```
-   User-agent: *
-   Allow: /
-   Sitemap: https://niftyhr.no/sitemap.xml
-   ```
-2. **Opprett `sitemap.xml`** med forside + alle 5 eksisterende poster (canonical niftyhr.no-URL-er).
-3. **Opprett `404.html`** og fjern evt. catch-all (`/* /index.html 200` i `_redirects`, eller «Single Page App»-modus i Cloudflare Pages). Nå returnerer ukjente URL-er forsiden med status 200 – det skal være ekte 404. Sjekk Pages-innstillinger hvis `_redirects` ikke finnes.
-4. **Etterfyll de 5 eksisterende postene** med `canonical`-tag + JSON-LD (de mangler begge).
-
----
-
-## 8. Responsstil til Cato
-
-Kort, konkret, direkte. Konklusjon først. Maks 1–3 anbefalinger. Si ifra hvis noe er svakt. Ikke bygg mer kompleksitet enn nødvendig.
+## Arbeidsmåte
+Konklusjon først, korte og konkrete svar. Lever komplett kode. Foreslå enklere løsning når den finnes. Commit til main når en endring er ferdig (det deployer siden).
