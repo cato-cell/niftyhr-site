@@ -121,7 +121,7 @@
   .plan .price{font-family:var(--display);font-weight:700;font-size:2.6rem;text-align:center;letter-spacing:-.02em}
   .plan .per{text-align:center;color:var(--muted);font-size:.9rem;margin-top:2px;min-height:20px}
   .plan .who{text-align:center;color:var(--muted);font-size:.95rem;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:22px 0}
-  .plan ul{list-style:none;display:grid;gap:14px;margin-top:24px}
+  .plan ul{list-style:none;display:grid;gap:14px;align-content:start;margin-top:24px}
   .plan li{display:flex;gap:12px;align-items:flex-start;font-size:.96rem}
   .check{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center}
   .check svg{width:13px;height:13px;stroke:#06140E;stroke-width:3;fill:none}
@@ -312,11 +312,12 @@ details,
 }
 
 /* ============ Priser: nedtrekk for resten av listen ============ */
-/* grid-template-rows 0fr → 1fr gir myk høyde-animasjon uten JS-målinger */
-.plan .more{display:grid;grid-template-rows:0fr;
-  transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1)}
+/* grid-template-rows 0fr → 1fr gir myk høyde-animasjon uten JS-målinger.
+   visibility:hidden holder skjulte punkter ute av tastatur og skjermleser. */
+.plan .more{display:grid;grid-template-rows:0fr;visibility:hidden;
+  transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1),visibility .38s}
 .plan .more > div{overflow:hidden}
-.plan.open .more{grid-template-rows:1fr}
+.plan.open .more{grid-template-rows:1fr;visibility:visible}
 .plan .more ul{margin-top:14px}
 .plan .toggle{margin-top:16px;background:none;border:0;padding:8px 0;min-height:44px;
   color:var(--green-text);font-family:inherit;font-size:.92rem;font-weight:600;
@@ -324,6 +325,8 @@ details,
 .plan .toggle:hover{color:#8EE0B8}
 .plan .toggle .arrow{transition:transform .3s ease}
 .plan.open .toggle .arrow{transform:rotate(180deg)}
+/* Avstandsholder: kortene blir like høye uten at knappen løsner fra listen */
+.plan .grow{flex:1}
 @media(prefers-reduced-motion:reduce){
   .plan .more,.plan .toggle .arrow{transition:none}
 }

@@ -167,9 +167,9 @@
 
         <div class="plan">
           <div class="tier">Plus</div>
-          <div class="price" style="font-size:1.8rem">30 dager gratis</div>
-          <div class="per">49 kr per ansatt/mnd</div>
-          <div class="who">Full tilgang – prøv alt uforpliktende</div>
+          <div class="price">Fra 49 kr</div>
+          <div class="per">per ansatt/mnd</div>
+          <div class="who">Prøv alt gratis i 30 dager</div>
           <a class="btn btn-fill" href="https://www.niftyhr.io/auth/sign-up">Opprett gratis bruker</a>
           <ul>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Ansattoversikt &amp; profiler</li>
@@ -177,7 +177,7 @@
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Tid og fravær</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Kurs &amp; LMS</li>
           </ul>
-          <div class="more">
+          <div class="more" id="plus-mer" aria-hidden="true">
             <div>
               <ul>
                 <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Feed &amp; push-varsler</li>
@@ -185,9 +185,10 @@
               </ul>
             </div>
           </div>
-          <button class="toggle" type="button" aria-expanded="false">
+          <button class="toggle" type="button" aria-expanded="false" aria-controls="plus-mer">
             <span class="label">Vis alt som er inkludert (+2)</span> <span class="arrow">↓</span>
           </button>
+          <div class="grow"></div>
         </div>
 
         <div class="plan featured">
@@ -202,20 +203,21 @@
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Skreddersydde løsninger</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Prioritert support</li>
           </ul>
+          <div class="grow"></div>
         </div>
 
         <div class="plan">
           <div class="tier">Nifty AI <span style="font-size:.68rem;color:var(--green-text);border:1px solid var(--green-border);border-radius:999px;padding:2px 8px;margin-left:6px;vertical-align:middle">Kommer</span></div>
-          <div class="price" style="font-size:1.7rem">Agent 44</div>
+          <div class="price">Fra 990 kr</div>
           <div class="per">Tillegg til Plus eller Business</div>
-          <div class="who">Inntil 15 ansatte – 990 kr/mnd<br>16–30 ansatte – 1 190 kr/mnd<br>31+ ansatte – 1 490 kr/mnd</div>
+          <div class="who">Skreddersydd for din bedrift</div>
           <a class="btn btn-fill" href="mailto:team@niftyhr.io?subject=Agent44">Få beskjed ved lansering</a>
           <ul>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> HR-assistent for ledere og ansatte</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> AI-basert onboarding av nyansatte</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Oppfølging av manglende oppgaver</li>
           </ul>
-          <div class="more">
+          <div class="more" id="ai-mer" aria-hidden="true">
             <div>
               <ul>
                 <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Generering av HR-dokumenter</li>
@@ -226,9 +228,10 @@
               </ul>
             </div>
           </div>
-          <button class="toggle" type="button" aria-expanded="false">
+          <button class="toggle" type="button" aria-expanded="false" aria-controls="ai-mer">
             <span class="label">Vis alt som er inkludert (+5)</span> <span class="arrow">↓</span>
           </button>
+          <div class="grow"></div>
         </div>
 
       </div>
@@ -482,12 +485,14 @@
     (function(){
       document.querySelectorAll('.plan .toggle').forEach(function(btn){
         var plan  = btn.closest('.plan');
+        var panel = document.getElementById(btn.getAttribute('aria-controls'));
         var label = btn.querySelector('.label');
-        var apen  = label.textContent;              // «Vis alt som er inkludert (+N)»
+        var lukket = label.textContent;             // «Vis alt som er inkludert (+N)»
         btn.addEventListener('click', function(){
           var open = plan.classList.toggle('open');
           btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-          label.textContent = open ? 'Vis mindre' : apen;
+          panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+          label.textContent = open ? 'Vis mindre' : lukket;
         });
       });
     })();
