@@ -250,3 +250,9 @@
     .lead-card{grid-template-columns:1fr;gap:36px;padding:32px 24px}
     .lead-form-wrap{padding:24px}
   }
+
+  /* ============ Juridiske sider (.post .body-overskrifter/lenker) ============ */
+  .post .body h2{font-family:var(--display);font-weight:600;font-size:1.35rem;letter-spacing:-.01em;margin:36px 0 12px}
+  .post .body h3{font-family:var(--display);font-weight:600;font-size:1.06rem;margin:24px 0 8px}
+  .post .body a{color:var(--green-text);text-decoration:underline}
+  .post .body .updated{color:var(--muted);font-size:.9rem;margin-bottom:24px}
