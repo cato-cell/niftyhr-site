@@ -176,9 +176,18 @@
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Dokumentarkiv</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Tid og fravær</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Kurs &amp; LMS</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Feed &amp; push-varsler</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Brukervennlig app</li>
           </ul>
+          <div class="more">
+            <div>
+              <ul>
+                <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Feed &amp; push-varsler</li>
+                <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Brukervennlig app</li>
+              </ul>
+            </div>
+          </div>
+          <button class="toggle" type="button" aria-expanded="false">
+            <span class="label">Vis alt som er inkludert (+2)</span> <span class="arrow">↓</span>
+          </button>
         </div>
 
         <div class="plan featured">
@@ -205,12 +214,21 @@
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> HR-assistent for ledere og ansatte</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> AI-basert onboarding av nyansatte</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Oppfølging av manglende oppgaver</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Generering av HR-dokumenter</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Organisasjonskunnskap og analyser</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Sykefraværsoppfølging</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Kompetansekartlegging</li>
-            <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Referat og oppfølging av medarbeidersamtaler</li>
           </ul>
+          <div class="more">
+            <div>
+              <ul>
+                <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Generering av HR-dokumenter</li>
+                <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Organisasjonskunnskap og analyser</li>
+                <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Sykefraværsoppfølging</li>
+                <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Kompetansekartlegging</li>
+                <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Referat og oppfølging av medarbeidersamtaler</li>
+              </ul>
+            </div>
+          </div>
+          <button class="toggle" type="button" aria-expanded="false">
+            <span class="label">Vis alt som er inkludert (+5)</span> <span class="arrow">↓</span>
+          </button>
         </div>
 
       </div>
@@ -454,6 +472,22 @@
           err.hidden = false;
           btn.disabled = false;
           btn.textContent = 'Send – få svar samme dag';
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    // Nedtrekk i priskort: åpner/lukker resten av inkludert-listen
+    (function(){
+      document.querySelectorAll('.plan .toggle').forEach(function(btn){
+        var plan  = btn.closest('.plan');
+        var label = btn.querySelector('.label');
+        var apen  = label.textContent;              // «Vis alt som er inkludert (+N)»
+        btn.addEventListener('click', function(){
+          var open = plan.classList.toggle('open');
+          btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+          label.textContent = open ? 'Vis mindre' : apen;
         });
       });
     })();
