@@ -55,7 +55,7 @@
 
   /* ============ Hero ============ */
   .hero{padding:84px 0 64px}
-  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
   .eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.82rem;color:var(--green-text);
     background:var(--green-soft);border:1px solid var(--green-border);padding:6px 14px;border-radius:999px;margin-bottom:24px}
   .hero h1{font-family:var(--display);font-weight:700;letter-spacing:-.03em;line-height:1.04;
@@ -256,3 +256,55 @@
   .post .body h3{font-family:var(--display);font-weight:600;font-size:1.06rem;margin:24px 0 8px}
   .post .body a{color:var(--green-text);text-decoration:underline}
   .post .body .updated{color:var(--muted);font-size:.9rem;margin-bottom:24px}
+
+/* ============ Hero: ekte produktskjermbilde ============ */
+.shot{margin:0;position:relative}
+/* Svakt radialt lys bak kortet – gir produktet et visuelt fokuspunkt */
+.shot::before{content:"";position:absolute;inset:-14% -10% -18%;pointer-events:none;
+  background:radial-gradient(58% 58% at 52% 40%,rgba(54,178,125,.13),
+    rgba(54,178,125,.04) 55%,transparent 78%);filter:blur(4px)}
+.shot .frame{position:relative;border:1px solid rgba(255,255,255,.14);border-radius:16px;
+  overflow:hidden;background:var(--bg-2);
+  box-shadow:0 2px 4px rgba(0,0,0,.3),0 18px 40px -18px rgba(0,0,0,.7),
+    0 44px 90px -40px rgba(0,0,0,.85)}
+/* Indre highlight langs øvre kant */
+.shot .frame::after{content:"";position:absolute;inset:0;border-radius:16px;pointer-events:none;
+  background:linear-gradient(180deg,rgba(255,255,255,.07),rgba(255,255,255,0) 42%)}
+.shot img{display:block;width:100%;height:auto}
+.shot figcaption{position:relative;margin-top:14px;color:var(--muted);font-size:.86rem}
+@media(max-width:920px){
+  .shot::before{inset:-8% -6% -10%}
+  .shot .frame,.shot .frame::after{border-radius:12px}
+  .shot figcaption{text-align:center}
+}
+
+/* ============ Felles boksbehandling (kant + highlight + dybde) ============ */
+/* Highlight legges som gradient over kortfargen, så den virker også på
+   <details> uten bruk av pseudoelementer. */
+.feat,
+.plan,
+.art,
+details,
+.lead-card,
+.status a,
+.status div{
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 38%),var(--bg-2);
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 1px 2px rgba(0,0,0,.28),0 12px 28px -14px rgba(0,0,0,.6);
+}
+.lead-form-wrap{
+  background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 38%),var(--bg-3);
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 1px 2px rgba(0,0,0,.28),0 12px 28px -14px rgba(0,0,0,.6);
+}
+/* Fremhevet priskort: behold grønn kant, legg dybden oppå */
+.plan.featured{
+  border-color:rgba(54,178,125,.46);
+  box-shadow:0 0 0 1px var(--green-border) inset,
+             0 1px 2px rgba(0,0,0,.28),
+             0 12px 28px -14px rgba(0,0,0,.6);
+}
+.video{
+  border-color:rgba(255,255,255,.14);
+  box-shadow:0 1px 2px rgba(0,0,0,.28),0 12px 28px -14px rgba(0,0,0,.6);
+}
