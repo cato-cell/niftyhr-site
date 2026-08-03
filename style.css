@@ -310,3 +310,20 @@ details,
   border-color:rgba(255,255,255,.14);
   box-shadow:0 1px 2px rgba(0,0,0,.28),0 12px 28px -14px rgba(0,0,0,.6);
 }
+
+/* ============ Priser: nedtrekk for resten av listen ============ */
+/* grid-template-rows 0fr → 1fr gir myk høyde-animasjon uten JS-målinger */
+.plan .more{display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .38s cubic-bezier(.4,0,.2,1)}
+.plan .more > div{overflow:hidden}
+.plan.open .more{grid-template-rows:1fr}
+.plan .more ul{margin-top:14px}
+.plan .toggle{margin-top:16px;background:none;border:0;padding:8px 0;min-height:44px;
+  color:var(--green-text);font-family:inherit;font-size:.92rem;font-weight:600;
+  text-align:left;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.plan .toggle:hover{color:#8EE0B8}
+.plan .toggle .arrow{transition:transform .3s ease}
+.plan.open .toggle .arrow{transform:rotate(180deg)}
+@media(prefers-reduced-motion:reduce){
+  .plan .more,.plan .toggle .arrow{transition:none}
+}
