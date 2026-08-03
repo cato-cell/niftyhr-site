@@ -42,7 +42,7 @@ niftyhr.no er en statisk markedsførings- og hjelpeside som leder nye brukere ti
 
 ## Faste fakta (footer/kontakt)
 - «NiftyHR, et produkt av Heisenbug®»
-- team@niftyhr.io · +47 411 15 411 · Org. nr. 934 476 336
+- team@niftyhr.io · +47 934 29 773 · Org. nr. 934 476 336
 - Heisenbug: https://heisenbug.no/ · LinkedIn: https://www.linkedin.com/company/nifty-hr/ · Vilkår: https://www.niftyhr.io/betingelser
 
 ## Forsidens seksjoner
