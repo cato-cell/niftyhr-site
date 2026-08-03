@@ -11,6 +11,7 @@
 <meta property="og:description" content="Enkelt HR-, onboarding- og fraværssystem. Gratis for inntil 5 ansatte.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://niftyhr.no">
+<link rel="canonical" href="https://niftyhr.no/">
 
 <!-- Display-font (resten systemfont for rask lasting) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,6 +19,39 @@
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="/style.css">
+
+<!-- JSON-LD strukturert data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://niftyhr.no/#organization",
+      "name": "NiftyHR",
+      "url": "https://niftyhr.no/",
+      "logo": "https://niftyhr.no/niftyhr-logo.svg",
+      "email": "team@niftyhr.io",
+      "telephone": "+47 411 15 411",
+      "description": "Enkelt, praktisk HR-system for små bedrifter uten HR-avdeling. Gratis for inntil 5 ansatte.",
+      "sameAs": ["https://www.linkedin.com/company/nifty-hr/"],
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "Heisenbug",
+        "url": "https://heisenbug.no/"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://niftyhr.no/#website",
+      "url": "https://niftyhr.no/",
+      "name": "NiftyHR",
+      "inLanguage": "no",
+      "publisher": { "@id": "https://niftyhr.no/#organization" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
