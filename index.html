@@ -245,7 +245,7 @@
       <div class="lead-card" data-reveal>
 
         <div>
-          <span class="eyebrow"><span class="dot"></span> Svar samme arbeidsdag</span>
+          <span class="eyebrow"><span class="dot"></span> Kontakt</span>
           <h2>Usikker på om NiftyHR passer dere? Spør oss først.</h2>
           <p class="lead-intro">Fortell kort hvordan dere jobber med HR i dag, så viser vi hva NiftyHR konkret ville løst hos dere – og hva det koster. 15 minutter, ingen presentasjon, ingen forpliktelse.</p>
           <div class="lead-points">
@@ -296,7 +296,7 @@
             <!-- Honeypot: skjult felt som bare bots fyller ut -->
             <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
 
-            <button class="btn btn-green" type="submit" id="leadBtn">Send – få svar samme dag</button>
+            <button class="btn btn-green" type="submit" id="leadBtn">Send henvendelse</button>
             <p class="lead-error" id="leadError" hidden>Noe gikk galt. Send oss gjerne en e-post på team@niftyhr.io i stedet.</p>
             <p class="lead-privacy">Vi bruker opplysningene kun til å svare deg om NiftyHR. Ingen nyhetsbrev, ingen deling med tredjeparter. Du kan be oss slette dem når som helst. Les mer i <a href="/betingelser/personvernerklaering.html">personvernerklæringen</a>.</p>
           </form>
@@ -304,7 +304,7 @@
           <div class="lead-thanks" id="leadThanks" hidden>
             <span class="tick">✓</span>
             <h3>Takk – meldingen er sendt.</h3>
-            <p>Du hører fra oss samme arbeidsdag. Vil du ikke vente, kan du opprette bruker og se deg rundt med en gang.</p>
+            <p>Vi tar kontakt så snart vi kan. Vil du ikke vente, kan du opprette bruker og se deg rundt med en gang.</p>
             <a class="btn btn-fill" style="width:auto" href="https://www.niftyhr.io/auth/sign-up">Opprett gratis bruker →</a>
           </div>
         </div>
@@ -474,7 +474,7 @@
         .catch(function(){
           err.hidden = false;
           btn.disabled = false;
-          btn.textContent = 'Send – få svar samme dag';
+          btn.textContent = 'Send henvendelse';
         });
       });
     })();
