@@ -33,12 +33,16 @@ niftyhr.no er en statisk markedsførings- og hjelpeside som leder nye brukere ti
 - Posisjonering: enkelt, praktisk, AI-forsterket HR for små bedrifter (5–50 ansatte) UTEN HR-avdeling. Ikke «enda et HR-system».
 - ALL norsk tekst skal kvalitetssjekkes for særskriving/orddeling, bindestrek og staving før commit.
 
-## Priser (ENESTE gyldige tall – aldri vis intervaller)
-- Nifty Go: Gratis, kostnadsfritt opptil 10 ansatte
-- Nifty Plus: 49,- per ansatt/mnd, for bedrifter med flere enn 10 ansatte
-- Nifty Business: Ta kontakt
-- SMS-portal: fra 0,59 per SMS
-- Agent44 (AI): omtales kun som KOMMENDE/neste steg – ALDRI som en live funksjon.
+## Priser (gjeldende modell – speiler forsiden; INGEN permanent gratis-plan)
+Inntakshook overalt = «Prøv gratis i 30 dager». Tre bokser på forsiden (Plus / Business / AI):
+- **Plus** (inntak / konverteringsfunnel): 30 dager gratis prøve, deretter 49 kr per ansatt/mnd ved årlig forskudd (59 kr ved månedlig), min. 490 kr/mnd, alle bedriftsstørrelser. CTA «Opprett gratis bruker» → /auth/sign-up.
+- **Business** (primær inntekt): Fra 490 kr pr mnd, for bedrifter med egne behov (skreddersøm). Alt i Plus + tredjepartsintegrasjoner, skreddersydde løsninger, prioritert support. CTA «Ta kontakt».
+- **Nifty AI – Agent 44**: KOMMER – omtales ALDRI som en live funksjon. Tillegg til Plus eller Business. Prisnivåer ved lansering (per bedrift): inntil 15 ansatte 990 kr/mnd · 16–30 ansatte 1 190 kr/mnd · 31+ ansatte 1 490 kr/mnd. CTA «Få beskjed ved lansering».
+- VIKTIG: Det finnes IKKE lenger en permanent «Nifty Go»-gratisplan for ≤5 (eller ≤10) ansatte på siden. «Gratis» = 30-dagers prøve. Ikke gjeninnfør gamle gratis-grenser.
+
+## Lenker/CTA (viktig)
+- «Opprett gratis bruker»-CTA-er → https://www.niftyhr.io/auth/sign-up
+- «Logg inn» → https://www.niftyhr.io/auth/login
 
 ## Faste fakta (footer/kontakt)
 - «NiftyHR, et produkt av Heisenbug®»
@@ -46,7 +50,7 @@ niftyhr.no er en statisk markedsførings- og hjelpeside som leder nye brukere ti
 - Heisenbug: https://heisenbug.no/ · LinkedIn: https://www.linkedin.com/company/nifty-hr/ · Vilkår: https://www.niftyhr.io/betingelser
 
 ## Forsidens seksjoner
-Header (logo + Logg inn) · Hero (overskrift + 2 CTA + gratis-hook + CSS-preview av ferie/fravær med donut) · Funksjoner (6 kort) · Video (YouTube-id JD3lNTJsqsw, klikk-for-å-spille, poster = /video-poster.jpg) · Priser (3 tiers) · Artikler (5 kort → /posts/) · FAQ (7 spørsmål) · Footer.
+Header (logo + Logg inn + «Opprett gratis bruker») · Hero (overskrift + 2 CTA + 30-dagers-prøve-hook + trygghetsstripe + CSS-preview av ferie/fravær med donut) · Funksjoner (6 kort) · Video (YouTube-id rPUGB4fkIVI, klikk-for-å-spille, poster = /video-poster.jpg) · Priser (3 bokser: Plus/Business/AI) · Artikler (5 kort → /posts/) · FAQ (7 spørsmål) · Slutt-CTA · Footer.
 
 ## Blogg
 5 innlegg i /posts/, samme slugs som niftyhr.io, delt style.css + .post-stiler, hver med CTA til registrering nederst og «Tilbake til forsiden»-lenke.
@@ -55,12 +59,15 @@ Header (logo + Logg inn) · Hero (overskrift + 2 CTA + gratis-hook + CSS-preview
 - [x] Forside (index.html) – ferdig og live
 - [x] style.css utskilt og lenket fra alle sider (index.html + alle /posts/)
 - [x] 5 blogginnlegg i /posts/ opprettet og lenket fra forsiden
-- [x] Rest-mappene «LOGO NIFTHR» og «NiftyHr site» slettet (allerede gjort)
-- [ ] Footer-lenker satt riktig – IKKE gjort ennå: LinkedIn peker til generisk linkedin.com (skal være .../company/nifty-hr/), Heisenbug-lenke mangler helt, og «Vilkår» peker til niftyhr.io (skal være niftyhr.io/betingelser)
+- [x] Rest-mappene «LOGO NIFTHR» og «NiftyHr site» slettet
+- [x] SEO-grunnoppsett gjort: robots.txt, sitemap.xml, 404.html, canonical + JSON-LD (Organization/WebSite på forsiden, BlogPosting på hvert innlegg)
+- [x] Footer-lenker riktige på forside + 404 (LinkedIn .../company/nifty-hr/, Heisenbug heisenbug.no, Vilkår niftyhr.io/betingelser)
+- [x] Kontaktnummer +47 934 29 773 overalt; video rPUGB4fkIVI; sign-up-CTA → /auth/sign-up
+- [ ] Footer-lenker i /posts/ – GJENSTÅR: de 5 blogginnleggene har fortsatt gamle footer-lenker (LinkedIn generisk, «Gå til niftyhr.io», Vilkår → niftyhr.io)
 - [ ] Domenet niftyhr.no koblet i Cloudflare – ikke gjort (kjører foreløpig på niftyhr-site.pages.dev)
 
-## Gjenstående SEO-grunnoppsett (engangsjobb)
-Ingen av disse finnes i repoet ennå – alt gjenstår: robots.txt, sitemap.xml, 404.html, canonical-tag og JSON-LD på sidene.
+## Gjenstående SEO (nice-to-have, ikke grunnoppsett)
+Grunnoppsettet er på plass. Mulige neste steg: OG-bilde (og:image), flere strukturerte data, ytelse/Lighthouse-finpuss.
 
 ## Arbeidsmåte
 Konklusjon først, korte og konkrete svar. Lever komplett kode. Foreslå enklere løsning når den finnes. Commit til main når en endring er ferdig (det deployer siden).
