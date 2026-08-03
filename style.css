@@ -96,7 +96,7 @@
 
   /* ============ Funksjoner ============ */
   .feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-  .feat{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px}
+  .feat{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px;position:relative}
   .feat .fic{width:42px;height:42px;border-radius:10px;background:var(--green-soft);border:1px solid var(--green-border);
     display:flex;align-items:center;justify-content:center;margin-bottom:16px;font-size:1.2rem}
   .feat h3{font-family:var(--display);font-weight:600;font-size:1.15rem;margin-bottom:7px}
@@ -115,12 +115,12 @@
 
   /* ============ Priser ============ */
   .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;align-items:start}
-  .plan{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:32px 28px}
+  .plan{background:var(--bg-2);border:1px solid var(--line);border-radius:18px;padding:32px 28px;position:relative}
   .plan.featured{border-color:var(--green-border);box-shadow:0 0 0 1px var(--green-border) inset}
   .plan .tier{color:var(--green-text);font-weight:600;font-size:1.05rem;text-align:center;margin-bottom:10px}
   .plan .price{font-family:var(--display);font-weight:700;font-size:2.6rem;text-align:center;letter-spacing:-.02em}
   .plan .per{text-align:center;color:var(--muted);font-size:.9rem;margin-top:2px;min-height:20px}
-  .plan .who{text-align:center;color:var(--muted);font-size:.95rem;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:22px 0}
+  .plan .who{text-align:center;color:var(--muted);font-size:.95rem;padding:18px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:22px 0;height:88px}
   .plan ul{list-style:none;display:grid;gap:14px;align-content:start;margin-top:24px}
   .plan li{display:flex;gap:12px;align-items:flex-start;font-size:.96rem}
   .check{flex:0 0 22px;width:22px;height:22px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center}
@@ -129,7 +129,7 @@
 
   /* ============ Artikler ============ */
   .art-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-  .art{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;text-decoration:none}
+  .art{background:var(--bg-2);border:1px solid var(--line);border-radius:var(--radius);padding:24px;display:flex;flex-direction:column;text-decoration:none;position:relative}
   .art .date{font-size:.82rem;color:var(--muted);padding-bottom:14px;border-bottom:1px solid var(--line);margin-bottom:14px}
   .art h3{font-family:var(--display);font-weight:600;font-size:1.08rem;line-height:1.25;margin-bottom:10px}
   .art p{color:var(--muted);font-size:.9rem;flex:1}
@@ -329,4 +329,33 @@ details,
 .plan .grow{flex:1}
 @media(prefers-reduced-motion:reduce){
   .plan .more,.plan .toggle .arrow{transition:none}
+}
+
+/* ============ Bevegelse: scroll-avsløring + hover-pop ============ */
+/* Skjul-tilstanden ligger bak .js-anim, som scriptet legger på <html>.
+   Uten JS – eller hvis scriptet feiler – vises alt innhold som normalt. */
+.js-anim [data-reveal]{opacity:0;translate:0 18px}
+[data-reveal]{
+  transition:opacity .55s ease,
+             translate .55s cubic-bezier(.2,.7,.2,1),
+             transform .3s cubic-bezier(.2,.8,.3,1),
+             box-shadow .25s ease,
+             border-color .25s ease;
+}
+.js-anim [data-reveal].inn{opacity:1;translate:0 0}
+
+/* Hover-pop: løft + lett skalering, kortet legger seg foran naboene */
+.feat:hover,.art:hover,.plan:hover{
+  z-index:2;
+  box-shadow:0 2px 4px rgba(0,0,0,.32),0 26px 54px -22px rgba(0,0,0,.78);
+}
+.feat:hover{transform:translateY(-4px) scale(1.025);border-color:rgba(255,255,255,.26)}
+.art:hover{transform:translateY(-4px) scale(1.025);border-color:rgba(54,178,125,.55)}
+/* Priskortene er større, så de skalerer litt mindre */
+.plan:hover{transform:translateY(-4px) scale(1.02)}
+
+@media(prefers-reduced-motion:reduce){
+  .js-anim [data-reveal]{opacity:1;translate:0 0}
+  [data-reveal]{transition:none}
+  .feat:hover,.art:hover,.plan:hover{transform:none}
 }
