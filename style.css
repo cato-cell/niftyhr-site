@@ -78,7 +78,7 @@
   .donut::after{content:"";position:absolute;inset:13px;border-radius:50%;background:var(--bg-3)}
   .donut div{position:relative;z-index:1;text-align:center}
   .donut span{font-family:var(--display);font-weight:700;font-size:1.7rem}
-  .donut small{display:block;font-size:.6rem;color:var(--muted);font-weight:400}
+  .donut small{display:block;font-size:.56rem;color:var(--muted);font-weight:400;max-width:72px;margin:2px auto 0;line-height:1.15}
   .donut-meta p{font-size:.8rem;color:var(--muted);margin-bottom:8px}
   .chips{display:flex;flex-wrap:wrap;gap:7px}
   .chip{font-size:.74rem;color:var(--muted);background:var(--bg-2);border:1px solid var(--line);padding:5px 10px;border-radius:8px}
