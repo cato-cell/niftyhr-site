@@ -288,7 +288,6 @@
 .art,
 details,
 .lead-card,
-.info-card,
 .status a,
 .status div{
   background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 38%),var(--bg-2);
@@ -296,13 +295,9 @@ details,
   box-shadow:0 1px 2px rgba(0,0,0,.28),0 12px 28px -14px rgba(0,0,0,.6);
 }
 
-/* ============ Info-boks (NiftyHR AI / SkatteFUNN) ============ */
-.info-card{border:1px solid var(--line);border-radius:18px;padding:44px;max-width:840px;margin:0 auto}
-.info-card .eyebrow{margin-bottom:18px}
-.info-card h2{font-family:var(--display);font-weight:600;font-size:clamp(1.6rem,3.2vw,2rem);letter-spacing:-.02em;line-height:1.15;margin-bottom:18px}
-.info-card p{color:var(--muted);font-size:1rem;line-height:1.7;margin-bottom:16px}
-.info-card p:last-child{margin-bottom:0}
-@media(max-width:600px){.info-card{padding:30px 24px}}
+/* FAQ-svar med flere avsnitt */
+details .ans p{margin-bottom:12px;line-height:1.6}
+details .ans p:last-child{margin-bottom:0}
 .lead-form-wrap{
   background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,0) 38%),var(--bg-3);
   border-color:rgba(255,255,255,.14);
