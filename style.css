@@ -246,6 +246,8 @@
   .lead-thanks h3{font-family:var(--display);font-weight:600;font-size:1.3rem}
   .lead-thanks p{color:var(--muted);font-size:.96rem;max-width:320px}
   .lead-error{color:#E88;font-size:.88rem}
+  /* Respekter hidden-attributtet selv om display er satt via klasse */
+  .lead-form[hidden],.lead-thanks[hidden],.lead-error[hidden]{display:none}
   @media(max-width:920px){
     .lead-card{grid-template-columns:1fr;gap:36px;padding:32px 24px}
     .lead-form-wrap{padding:24px}
