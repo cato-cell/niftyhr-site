@@ -204,7 +204,7 @@
           <div class="price">Fra 490 kr</div>
           <div class="per">pr mnd</div>
           <div class="who">For bedrifter med egne behov</div>
-          <a class="btn btn-fill" href="mailto:team@niftyhr.io?subject=Nifty Business">Ta kontakt</a>
+          <a class="btn btn-fill" href="#kontakt">Ta kontakt</a>
           <ul>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Alt i Plus inkludert</li>
             <li><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Tredjepartsintegrasjoner</li>
@@ -233,6 +233,80 @@
 
       </div>
       <p class="price-note">Alle nye kunder får 30 dager full Plus-tilgang gratis ved oppstart. Forbehold om at prising kan endres i fremtiden, i henhold til vilkårene.</p>
+    </div>
+  </section>
+
+  <!-- ============ Kontakt / leadfangst ============ -->
+  <section class="section lead-sec" id="kontakt">
+    <div class="wrap">
+      <div class="lead-card">
+
+        <div>
+          <span class="eyebrow"><span class="dot"></span> Svar samme arbeidsdag</span>
+          <h2>Usikker på om NiftyHR passer dere? Spør oss først.</h2>
+          <p class="lead-intro">Fortell kort hvordan dere jobber med HR i dag, så viser vi hva NiftyHR konkret ville løst hos dere – og hva det koster. 15 minutter, ingen presentasjon, ingen forpliktelse.</p>
+          <div class="lead-points">
+            <div><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Du snakker med Roger, daglig leder – ikke en selger</div>
+            <div><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Vi sier ærlig fra hvis NiftyHR ikke passer dere</div>
+            <div><span class="check"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></span> Vi legger deg ikke inn i noen e-postliste</div>
+          </div>
+          <div class="lead-direct">
+            <p>Foretrekker du å ta det direkte?</p>
+            <div class="links">
+              <a href="tel:+4793429773">+47 934 29 773</a>
+              <a href="mailto:team@niftyhr.io">team@niftyhr.io</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="lead-form-wrap">
+          <form class="lead-form" id="leadForm" novalidate>
+            <!-- Web3Forms: bytt access key til din egen fra web3forms.com -->
+            <input type="hidden" name="access_key" value="6b242301-81c9-42a8-845d-8fa66ffb4353">
+            <input type="hidden" name="subject" value="Ny henvendelse fra niftyhr.no">
+            <input type="hidden" name="from_name" value="niftyhr.no">
+
+            <div class="field">
+              <label for="lf-navn">Navn</label>
+              <input id="lf-navn" name="navn" type="text" required autocomplete="name" placeholder="Kari Nordmann">
+            </div>
+            <div class="field">
+              <label for="lf-epost">Jobb-e-post</label>
+              <input id="lf-epost" name="epost" type="email" required autocomplete="email" placeholder="kari@bedrift.no">
+            </div>
+            <div class="field">
+              <label for="lf-ansatte">Antall ansatte</label>
+              <select id="lf-ansatte" name="ansatte" required>
+                <option value="">Velg …</option>
+                <option value="1-5">1–5</option>
+                <option value="6-15">6–15</option>
+                <option value="16-30">16–30</option>
+                <option value="31-50">31–50</option>
+                <option value="50+">Over 50</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="lf-melding">Hva vil du vite? <span>(valgfritt)</span></label>
+              <textarea id="lf-melding" name="melding" rows="3" placeholder="Vi holder onboarding i Excel i dag og mister oversikten når folk slutter."></textarea>
+            </div>
+
+            <!-- Honeypot: skjult felt som bare bots fyller ut -->
+            <input class="hp" type="text" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+            <button class="btn btn-green" type="submit" id="leadBtn">Send – få svar samme dag</button>
+            <p class="lead-error" id="leadError" hidden>Noe gikk galt. Send oss gjerne en e-post på team@niftyhr.io i stedet.</p>
+            <p class="lead-privacy">Vi bruker opplysningene kun til å svare deg om NiftyHR. Ingen nyhetsbrev, ingen deling med tredjeparter. Du kan be oss slette dem når som helst.</p>
+          </form>
+
+          <div class="lead-thanks" id="leadThanks" hidden>
+            <span class="tick">✓</span>
+            <h3>Takk – meldingen er sendt.</h3>
+            <p>Du hører fra oss samme arbeidsdag. Vil du ikke vente, kan du opprette bruker og se deg rundt med en gang.</p>
+            <a class="btn btn-fill" style="width:auto" href="https://www.niftyhr.io/auth/sign-up">Opprett gratis bruker →</a>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
@@ -363,6 +437,41 @@
       }
       p.addEventListener('click', play);
       p.addEventListener('keydown', function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); play(); }});
+    })();
+  </script>
+
+  <script>
+    // Leadskjema: sender til Web3Forms uten sidelast, viser takke-tilstand
+    (function(){
+      var f = document.getElementById('leadForm');
+      if(!f) return;
+      var btn = document.getElementById('leadBtn');
+      var err = document.getElementById('leadError');
+      var thanks = document.getElementById('leadThanks');
+
+      f.addEventListener('submit', function(e){
+        e.preventDefault();
+        if(!f.checkValidity()){ f.reportValidity(); return; }
+        err.hidden = true;
+        btn.disabled = true;
+        btn.textContent = 'Sender …';
+
+        fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(f)
+        })
+        .then(function(r){ return r.json(); })
+        .then(function(d){
+          if(d.success){ f.hidden = true; thanks.hidden = false; }
+          else { throw new Error('feil'); }
+        })
+        .catch(function(){
+          err.hidden = false;
+          btn.disabled = false;
+          btn.textContent = 'Send – få svar samme dag';
+        });
+      });
     })();
   </script>
 
