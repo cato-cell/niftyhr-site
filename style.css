@@ -194,9 +194,11 @@
   /* ============ Konvertering: header-CTA + trygghetssignaler ============ */
   .cta-group{display:flex;align-items:center;gap:10px}
   @media(max-width:600px){
-    .header-login{display:none}
+    /* Mobil: vis «Logg inn» i headeren, skjul «Opprett gratis bruker»
+       (hero har allerede en tydelig opprett-bruker-CTA rett under) */
+    .cta-group .btn-green{display:none}
     .topbar-inner{padding:12px 16px}
-    .cta-group .btn-green{padding:11px 16px;font-size:.9rem}
+    .header-login{padding:11px 16px;font-size:.9rem}
   }
   .trust{display:flex;flex-wrap:wrap;gap:10px 22px;margin-top:24px;color:var(--muted);font-size:.88rem}
   .trust span{display:inline-flex;align-items:center;gap:8px}
