@@ -70,4 +70,6 @@ Header (logo + Logg inn + «Opprett gratis bruker») · Hero (overskrift + 2 CTA
 Grunnoppsettet er på plass. Mulige neste steg: OG-bilde (og:image), flere strukturerte data, ytelse/Lighthouse-finpuss.
 
 ## Arbeidsmåte
-Konklusjon først, korte og konkrete svar. Lever komplett kode. Foreslå enklere løsning når den finnes. Commit til main når en endring er ferdig (det deployer siden).
+Konklusjon først, korte og konkrete svar. Lever komplett kode. Foreslå enklere løsning når den finnes.
+
+**Git-regel:** Commit og push ALLTID direkte til `main` når en endring er ferdig – det deployer siden. Ikke lag feature-branch eller PR med mindre Cato ber om det. Unntak: hvis endringen er risikabel (større omskriving, noe som kan brekke forsiden, noe som er vanskelig å reversere), lag branch + PR og si fra hvorfor.
